@@ -1,9 +1,9 @@
-import Paystack from 'paystack-sdk';
+import PaystackSDK from 'paystack-sdk';
 import crypto from 'crypto';
 
-const paystackClient = new Paystack(process.env.PAYSTACK_SECRET_KEY!);
+const paystack = new PaystackSDK.Paystack(process.env.PAYSTACK_SECRET_KEY!);
 
-export const paystackApi = paystackClient;
+export const paystackApi = paystack;
 
 // Verify webhook signature
 export const verifyWebhookSignature = (
@@ -35,12 +35,12 @@ export const initializeTransaction = async (
     params.plan = planCode;
   }
 
-  return paystackClient.transaction.initialize(params);
+  return paystack.transaction.initialize(params);
 };
 
 // Verify transaction
 export const verifyTransaction = async (reference: string) => {
-  return paystackClient.transaction.verify({
+  return paystack.transaction.verify({
     reference,
   });
 };
@@ -52,7 +52,7 @@ export const chargeAuthorization = async (
   amount: number, // in pesewas
   metadata: Record<string, any> = {}
 ) => {
-  return paystackClient.transaction.chargeAuthorization({
+  return paystack.transaction.chargeAuthorization({
     authorization_code: authorizationCode,
     email,
     amount,
@@ -77,7 +77,7 @@ export const createSubscription = async (
     params.authorization = authorizationCode;
   }
 
-  return paystackClient.subscription.create(params);
+  return paystack.subscription.create(params);
 };
 
 // Create subscription plan on Paystack
@@ -87,7 +87,7 @@ export const createSubscriptionPlan = async (
   amount: number, // in pesewas for GHS
   description?: string
 ) => {
-  return paystackClient.plan.create({
+  return paystack.plan.create({
     name,
     interval,
     amount,
