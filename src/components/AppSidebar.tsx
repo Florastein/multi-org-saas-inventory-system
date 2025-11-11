@@ -37,7 +37,7 @@ import { usePathname, useRouter } from "next/navigation";
 const menuItems = [
   {
     title: "Dashboard",
-    url: "/",
+    url: "/dashboard",
     icon: LayoutDashboard,
   },
   {
