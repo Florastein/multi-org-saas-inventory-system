@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Package, BarChart3, Users, Shield, Zap, Globe } from "lucide-react";
+import { Package, BarChart3, Users, Shield, Zap, Globe, Check } from "lucide-react";
 
 export default function LandingPage() {
   return (
@@ -14,6 +14,9 @@ export default function LandingPage() {
             <span className="text-xl font-bold">InvenSaaS</span>
           </div>
           <nav className="flex items-center gap-4">
+            <Link href="#pricing">
+              <Button variant="ghost">Pricing</Button>
+            </Link>
             <Link href="/login">
               <Button variant="ghost">Log in</Button>
             </Link>
@@ -116,8 +119,158 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section id="pricing" className="border-t bg-muted/50">
+        <div className="container py-24 md:py-32">
+          <div className="flex flex-col items-center gap-4 text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="max-w-[700px] text-muted-foreground md:text-lg">
+              Choose the perfect plan for your business needs. All plans include a 14-day free trial.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+            {/* Starter Plan */}
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle className="text-2xl">Starter</CardTitle>
+                <CardDescription>Perfect for small businesses</CardDescription>
+                <div className="mt-4">
+                  <span className="text-4xl font-bold">GHS 150</span>
+                  <span className="text-muted-foreground">/month</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-1 flex flex-col">
+                <ul className="space-y-3 flex-1 mb-6">
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Up to 5 users</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>1 organization</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Basic inventory tracking</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Activity logs</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Email support</span>
+                  </li>
+                </ul>
+                <Link href="/register" className="w-full">
+                  <Button className="w-full" variant="outline">Get Started</Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Professional Plan */}
+            <Card className="flex flex-col border-primary shadow-lg">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <span className="bg-primary text-primary-foreground text-sm font-semibold px-3 py-1 rounded-full">
+                  Most Popular
+                </span>
+              </div>
+              <CardHeader>
+                <CardTitle className="text-2xl">Professional</CardTitle>
+                <CardDescription>For growing teams</CardDescription>
+                <div className="mt-4">
+                  <span className="text-4xl font-bold">GHS 275</span>
+                  <span className="text-muted-foreground">/month</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-1 flex flex-col">
+                <ul className="space-y-3 flex-1 mb-6">
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Up to 15 users</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>3 organizations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Advanced inventory tracking</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Low stock alerts</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Priority email support</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Export reports</span>
+                  </li>
+                </ul>
+                <Link href="/register" className="w-full">
+                  <Button className="w-full">Get Started</Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Enterprise Plan */}
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle className="text-2xl">Enterprise</CardTitle>
+                <CardDescription>For large organizations</CardDescription>
+                <div className="mt-4">
+                  <span className="text-4xl font-bold">GHS 400</span>
+                  <span className="text-muted-foreground">/month</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-1 flex flex-col">
+                <ul className="space-y-3 flex-1 mb-6">
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Up to 50 users</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>10 organizations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Advanced inventory tracking</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Custom reports</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>API access</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Priority phone & email support</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>Dedicated account manager</span>
+                  </li>
+                </ul>
+                <Link href="/register" className="w-full">
+                  <Button className="w-full" variant="outline">Get Started</Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
-      <section className="border-t bg-muted/50">
+      <section className="border-t">
         <div className="container py-24 md:py-32">
           <div className="flex flex-col items-center gap-4 text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -165,7 +318,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t">
+      <section className="border-t bg-muted/50">
         <div className="container py-24 md:py-32">
           <div className="flex flex-col items-center gap-4 text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -184,7 +337,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t bg-muted/50">
+      <footer className="border-t">
         <div className="container py-8 md:py-12">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex items-center gap-2">
