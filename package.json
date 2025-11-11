@@ -6,7 +6,8 @@
         "dev": "next dev --turbopack",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "seed:firebase": "tsx src/scripts/seed-firebase.ts"
     },
     "dependencies": {
         "@babel/parser": "^7.28.5",
@@ -64,6 +65,8 @@
         "embla-carousel-autoplay": "^8.6.0",
         "embla-carousel-react": "^8.6.0",
         "estree-walker": "2.0.2",
+        "firebase": "^12.5.0",
+        "firebase-admin": "^13.6.0",
         "framer-motion": "^12.23.24",
         "input-otp": "^1.4.2",
         "lucide-react": "^0.552.0",
