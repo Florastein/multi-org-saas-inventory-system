@@ -7,6 +7,7 @@ import {
   Building2,
   Settings,
   ChevronDown,
+  LogOut,
 } from "lucide-react";
 
 import {
@@ -31,7 +32,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useApp } from "@/contexts/AppContext";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const menuItems = [
   {
@@ -57,8 +58,14 @@ const menuItems = [
 ];
 
 export function AppSidebar() {
-  const { currentOrganization, organizations, setCurrentOrganization, user } = useApp();
+  const { currentOrganization, organizations, setCurrentOrganization, user, signOut } = useApp();
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push('/login');
+  };
 
   return (
     <Sidebar>
@@ -142,10 +149,17 @@ export function AppSidebar() {
               <DropdownMenuContent className="w-[--radix-dropdown-menu-trigger-width] min-w-56" side="top" align="start">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push('/settings')}>
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push('/settings')}>
+                  Settings
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Log out</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut} className="text-destructive focus:text-destructive">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Log out
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
