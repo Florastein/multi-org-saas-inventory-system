@@ -115,3 +115,47 @@ export const verification = sqliteTable("verification", {
     () => new Date(),
   ),
 });
+
+export const subscriptionPlans = sqliteTable('subscription_plans', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  name: text('name').notNull(),
+  price: real('price').notNull(),
+  pricePesewas: integer('price_pesewas').notNull(),
+  interval: text('interval').notNull(),
+  maxUsers: integer('max_users').notNull(),
+  maxOrganizations: integer('max_organizations').notNull(),
+  features: text('features'),
+  paystackPlanCode: text('paystack_plan_code').unique(),
+  isActive: integer('is_active', { mode: 'boolean' }).default(true),
+  createdAt: text('created_at').notNull(),
+  updatedAt: text('updated_at').notNull(),
+});
+
+export const subscriptions = sqliteTable('subscriptions', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  userId: text('user_id').notNull().references(() => user.id),
+  planId: integer('plan_id').notNull().references(() => subscriptionPlans.id),
+  status: text('status').notNull(),
+  paystackSubscriptionCode: text('paystack_subscription_code').unique(),
+  paystackCustomerCode: text('paystack_customer_code'),
+  paystackAuthorizationCode: text('paystack_authorization_code'),
+  currentPeriodStart: text('current_period_start'),
+  currentPeriodEnd: text('current_period_end'),
+  canceledAt: text('canceled_at'),
+  createdAt: text('created_at').notNull(),
+  updatedAt: text('updated_at').notNull(),
+});
+
+export const transactions = sqliteTable('transactions', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  userId: text('user_id').notNull().references(() => user.id),
+  subscriptionId: integer('subscription_id').references(() => subscriptions.id),
+  reference: text('reference').notNull().unique(),
+  amount: integer('amount').notNull(),
+  amountGhs: real('amount_ghs').notNull(),
+  status: text('status').notNull(),
+  paymentMethod: text('payment_method'),
+  metadata: text('metadata'),
+  createdAt: text('created_at').notNull(),
+  updatedAt: text('updated_at').notNull(),
+});
