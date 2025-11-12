@@ -20,16 +20,16 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  turbopack: {
-    rules: {
-      "*.{jsx,tsx}": {
-        loaders: [LOADER]
-      }
-    }
-  }
+  // turbopack: {
+  //   rules: {
+  //     "*.{jsx,tsx}": {
+  //       loaders: [LOADER]
+  //     }
+  //   }
+  // },
+  allowedDevOrigins: [
+    'http://3000-firebase-multi-org-saas-inven-1762899806711.cluster-64pjnskmlbaxowh5lzq6i7v4ra.cloudworkstations.dev'
+  ]
 };
 
 export default nextConfig;
