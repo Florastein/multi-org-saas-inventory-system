@@ -4,6 +4,7 @@ import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 import { AppProvider } from "@/contexts/AppContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata: Metadata = {
   title: "Inventory Management System",
@@ -29,9 +30,11 @@ export default function RootLayout({
           data-debug="true"
           data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
         />
-        <AppProvider>
-          {children}
-        </AppProvider>
+        <AuthProvider>
+          <AppProvider>
+            {children}
+          </AppProvider>
+        </AuthProvider>
         <VisualEditsMessenger />
       </body>
     </html>
